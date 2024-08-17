@@ -1,0 +1,25 @@
+package main
+
+import (
+	"log"
+	"net/http"
+
+	"gihub.com/prastavna/form-to-sheet/internals/api"
+	"github.com/joho/godotenv"
+)
+
+func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	api.Routes()
+
+	log.Print("Server started at :8080")
+	err = http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("Error starting the server")
+	}
+
+}

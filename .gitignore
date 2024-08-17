@@ -1,0 +1,9 @@
+# Editor directories and files
+.vscode
+
+# Environment files
+.env
+google-credentials.json
+
+# Executables
+main
