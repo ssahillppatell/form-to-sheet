@@ -9,7 +9,8 @@ import (
 )
 
 type User struct {
-	Email string `json:"email"`
+	Email  string `json:"email"`
+	Gender string `json:"gender"`
 }
 
 func SubmitHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +23,7 @@ func SubmitHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	response := services.Submit(user.Email)
+	response := services.Submit(user.Email, user.Gender)
 	if response.Status != 200 {
 		http.Error(w, response.Message, response.Status)
 		return

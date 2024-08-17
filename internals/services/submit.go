@@ -16,7 +16,7 @@ type Response struct {
 	Status  int    `json:"status"`
 }
 
-func Submit(email string) Response {
+func Submit(email string, gender string) Response {
 	errResponse := Response{Message: "Something went wrong!", Status: 500}
 	successResponse := Response{Message: "success", Status: 200}
 
@@ -35,6 +35,11 @@ func Submit(email string) Response {
 		return errResponse
 	}
 
+	if gender != "Male" && gender != "Female" {
+		log.Println("Incorrect Gender!")
+		return errResponse
+	}
+
 	sheetID := os.Getenv("SPREADSHEET_ID")
 	writeRange := "Sheet1!A1:B1"
 
@@ -50,7 +55,7 @@ func Submit(email string) Response {
 	currentTime := time.Now().Format(time.RFC3339)
 
 	valueRange := &sheets.ValueRange{
-		Values: [][]interface{}{{mailAddress.Address, currentTime}},
+		Values: [][]interface{}{{mailAddress.Address, gender, currentTime}},
 	}
 
 	_, err = sheetsService.Spreadsheets.Values.Append(sheetID, writeRange, valueRange).ValueInputOption("USER_ENTERED").Context(ctx).Do()

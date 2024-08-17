@@ -8,7 +8,7 @@ import (
 )
 
 func addMiddleware(handler http.HandlerFunc) http.Handler {
-	return middlewares.CheckMethod(middlewares.RateLimiter(http.HandlerFunc(handler)))
+	return middlewares.CheckMethod(middlewares.RateLimiter(middlewares.Cors(http.HandlerFunc(handler))))
 }
 
 func Routes() {
