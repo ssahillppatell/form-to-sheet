@@ -7,7 +7,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"google.golang.org/api/sheets/v4"
 )
 
@@ -19,14 +18,6 @@ type Response struct {
 func Submit(email string, gender string) Response {
 	errResponse := Response{Message: "Something went wrong!", Status: 500}
 	successResponse := Response{Message: "success", Status: 200}
-
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Println("Error loading .env file")
-		log.Println(err)
-		return errResponse
-	}
 
 	mailAddress, err := mail.ParseAddress(email)
 	if err != nil {
