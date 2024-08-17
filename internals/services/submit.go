@@ -31,8 +31,8 @@ func Submit(email string, gender string) Response {
 		return errResponse
 	}
 
-	sheetID := os.Getenv("SPREADSHEET_ID")
-	writeRange := "Sheet1!A1:B1"
+	sheetId := os.Getenv("SPREADSHEET_ID")
+	writeRange := "Sheet1!A1:C1"
 
 	ctx := context.Background()
 
@@ -49,7 +49,7 @@ func Submit(email string, gender string) Response {
 		Values: [][]interface{}{{mailAddress.Address, gender, currentTime}},
 	}
 
-	_, err = sheetsService.Spreadsheets.Values.Append(sheetID, writeRange, valueRange).ValueInputOption("USER_ENTERED").Context(ctx).Do()
+	_, err = sheetsService.Spreadsheets.Values.Append(sheetId, writeRange, valueRange).ValueInputOption("USER_ENTERED").Context(ctx).Do()
 	if err != nil {
 		log.Println("Error appending value to sheet")
 		log.Println(err)
