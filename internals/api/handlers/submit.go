@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"gihub.com/prastavna/form-to-sheet/internals/services"
+	"github.com/prastavna/form-to-sheet/internals/services"
 )
 
 type User struct {

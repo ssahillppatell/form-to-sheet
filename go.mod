@@ -1,4 +1,4 @@
-module gihub.com/prastavna/form-to-sheet
+module github.com/prastavna/form-to-sheet
 
 go 1.23.0
 

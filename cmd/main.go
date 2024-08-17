@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"gihub.com/prastavna/form-to-sheet/internals/api"
 	"github.com/joho/godotenv"
+	"github.com/prastavna/form-to-sheet/internals/api"
 )
 
 func main() {
